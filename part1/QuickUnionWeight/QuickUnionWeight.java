@@ -73,6 +73,10 @@ public class QuickUnionWeight {
         System.out.println(Arrays.toString(quw.sz));
         System.out.println("--------");
         quw.union(6, 1);
+        System.out.println(Arrays.toString(quw.id));
+        System.out.println(Arrays.toString(quw.sz));
+        System.out.println("--------");
+        System.out.println(quw.connected(7, 3));
         quw.union(7, 3);
         System.out.println(Arrays.toString(quw.id));
         System.out.println(Arrays.toString(quw.sz));
