@@ -1,38 +1,34 @@
 import java.util.Arrays;
 
-public class QuickUnionUF {
+public class QuickFind {
 
     private int[] id;
 
-    public QuickUnionUF(int N) {
+    public QuickFind(int N) {
         id = new int[N];
         for (int i = 0; i < N; i++) {
             id[i] = i;
         }
     }
 
-    // 回溯到最上层的父节点
-    private int root(int i) {
-        while (i != id[i]) {
-            i = id[i];
-        }
-        return i;
-    }
-
-    // 判断是否有同样的最上层父节点
     public boolean connected(int p, int q) {
-        return root(p) == root(q);
+        return id[p] == id[q];
+
     }
 
     public void union(int p, int q) {
-        int i = root(p);
-        int j = root(q);
-        id[i] = j;
+        int pid = id[p];
+        int qid = id[q];
+
+        for (int i = 0; i < id.length; i++) {
+            if (id[i] == pid) {
+                id[i] = qid;
+            }
+        }
     }
 
     public static void main(String[] args) {
-        QuickUnionUF qf = new QuickUnionUF(10);
-        System.out.println(Arrays.toString(qf.id));
+        QuickFind qf = new QuickFind(10);
         qf.union(4, 3);
         System.out.println(Arrays.toString(qf.id));
         qf.union(3, 5);
